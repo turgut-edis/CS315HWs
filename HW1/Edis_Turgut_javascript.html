@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Arrays</title>
+</head>
+<body>
+    <script>
+        /** 1 - What types are legal for subscripts?
+            2 - Are subscripting expressions in element references range checked?
+            3 - When are subscript ranges bound?
+            4 - When does allocation take place?
+            5 - Are ragged or rectangular multidimensional arrays allowed, or both?
+            6 - Can array objects be initialized?
+            7 - Are any kind of slices supported?
+            8 - Which operators are provided?
+        */
+        console.log("JavaScript Arrays");
+        console.log("--------------------------------------------");
+
+        //6 - Array objects can be initialized when the array object is creating because the array is implicit heap-dynamic.
+        const array = [16,23,37,48,51,64,79,85,92,10];
+        console.log(array);
+        console.log("--------------------------------------------");
+
+        //1 - What types are legal for subscripts?
+        //Only integers are legal for subscripts.
+        console.log(array[5]);
+        console.log("--------------------------------------------");
+
+        //2 - Are subscripting expressions in element references range checked?
+        //In JavaScript, the index is checking whether it is in the range. 
+        //However, when the index is out of range, it returns undefined instead of error because it will expand the array according to the given index number.
+        console.log(array[10]); //undefined
+        console.log(array[7]); //array element
+        console.log("--------------------------------------------");
+
+        //3 - When are subscript ranges bound?
+        //The arrays in JavaScript are heap-dynamic, the binding of subscript ranges is dynamic and ranges are bound at runtime.
+        var array2 = ['ABBA', 1974, 'Eurovision'];
+        console.log(array2[1]);
+        console.log("--------------------------------------------");
+
+        //4-When does allocation take place?
+        //The array life time is heap-dynamic so allocation of the array is dynamic and take place at runtime.
+        var array3 = ['History', 'Math', 'Geography', 'Turkish', 'English'];
+        console.log(array3);
+        console.log("--------------------------------------------");
+
+        //5-Are ragged or rectangular multidimensional arrays allowed, or both?
+        //JavaScript allows both ragged and multidimensional arrays.
+        var rectArray = [[17,22,36],[41,53,60],[78,87,92]];
+        var ragArray = [[13,20,35],[4,5],[66,77,88,99,101],[131,162,713,14]];
+        console.log(rectArray);
+        console.log(ragArray);
+        console.log("--------------------------------------------");
+
+        //6-Can array objects be initialized?
+        //Yes, array objects can be initialized when the array is created initially.
+        var array4 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+        console.log(array4);
+
+        //7-Are any kind of slices supported?
+        //Slicing is supported with .slice method in JavaScript.
+        console.log(array4.slice(3,7));
+
+        //8-Which operators are provided?
+        //Array operators are supported in JavaScript with .map function.
+        //-> in line 62, the array4 is defined
+        var oped_array4 = array4.map(x => x * 2); //oped_array4 = array4 * 2
+        console.log(oped_array4);
+        oped_array4 = array4.map((x,i) => x + oped_array4[i]); //oped_array4 = array4 + oped_array4
+        console.log(oped_array4);
+        oped_array4 = array4.map((x,i) => oped_array4[i] - x);
+        console.log(oped_array4);
+    </script>
+</body>
+</html>

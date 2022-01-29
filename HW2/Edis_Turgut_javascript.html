@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HW2 Javascript</title>
+</head>
+<body>
+    <script>
+        /**
+        1.      How are the boolean values represented?
+
+        2.      What operators are short-circuited?
+
+        3.      How are the results of short-circuited operators computed? (Consider also function calls)
+
+        4.      What are the advantages about short-circuit evaluation?
+
+        5.      What are the potential problems about short-circuit evaluation?
+        */
+
+        //1) In javascript boolean is represented as true and false. 
+        var t = true;
+        var f = false;
+        console.log('true == false is ' + (t == f));
+        console.log("\n");
+        //Also, in integer scope, 1 and 0 can be used to represent true and false
+        //However, all integers other than 0 is true
+        var num1 = 1;
+        var num2 = 0;
+        var num3 = -5;
+        console.log('1 is ' + (t == num1));
+        console.log("\n");
+        console.log('0 is ' + (f == num2));
+        console.log("\n");
+        console.log('-5 is ' + (t == num3));
+        console.log("\n");
+        //When the boolean is constructed with 0 parameters, it is false
+        var empty_var = new Boolean();
+        console.log('empty var is ' + empty_var);
+        console.log("\n");
+        //Null is false
+        var null_bool = new Boolean(null);
+        console.log('null is ' + null_bool);
+        console.log("\n");
+        //Empty string is false
+        var empty_str = new Boolean("");
+        console.log('empty string is ' + empty_str);
+        console.log("\n");
+        console.log("-------------------------------------------\n");
+
+        //2) In Javascript, OR "||" and AND "&&" operators are short-circuited.
+        //These operators are evaluated from left to right. 
+
+        num1 = 78;
+        num2 = 45;
+        
+        //OR "||" example
+        console.log("(178 > 45 || 45 > 78) returns " + ( num1 > num2 || num2 > num1));
+        console.log("\n");
+
+        //AND "&&" example
+        console.log('true && false returns ' + (t && f));
+        console.log("\n");
+        console.log("-------------------------------------------\n");
+
+        //3) In Javascript, results are computed from left to right.
+        //For OR "||" operator, the result will be the first true value.
+        //If there is two values and left is true, then the result is left, otherwise right is the result.
+        var empty_str1 = '';
+        var str1 = 'something';
+        var str2 = 'not gonna checked';
+        var res = empty_str1 || str1 || str2; //The result is str1 since it is first true value
+        console.log(res);
+        console.log("\n");
+
+        //For AND "&&" operator, the result is the first false value.
+        //If there is two values and left is true, then the result is right, otherwise left is the result.
+        res = empty_str1 && str1 && str2;
+        console.log(res);
+        console.log("\n");
+
+        //This function always returns false
+        function falseFunc(){
+            return false;
+        }
+
+        //This function always returns true
+        function trueFunc(){
+            return true;
+        }
+
+        //For function calls, the function is never calculated in OR when the before of function is true
+        console.log((5 > 1) || falseFunc());
+        console.log("\n");
+
+        //For function calls, the function is never calculated in AND when the before of function is false
+        console.log((1 > 5) && trueFunc());
+        console.log("\n");
+        console.log("-------------------------------------------\n");
+
+        //This function creates an infinite loop
+        function inf_loop(num){
+            return inf_loop(num);
+        }
+
+        //4) If the function gives some error or long calculations, Short-circuit can prevent invoke of this function.
+        num1 = 5;
+        //The infinite loop is never calculated since the before is true
+        console.log(num1 < 6 || inf_loop(num1)); 
+        console.log("\n");
+        //The infinite loop is never calculated since the before is false 
+        console.log(num1 > 6 && loop(num1)); 
+        console.log("\n");
+        console.log("-------------------------------------------\n");
+
+        /* 5)
+        Because of the RHS short-circuited, programmer may not even know the called function is working or not. It may be critical when in a situation like the function is designed for the allocate system resources.
+        The execution of the program may slow down because of the branch-prediction got wrong predictions. We know that this situation slows down the program execution in modern processors.
+        */
+    
+    </script>
+</body>
+</html>
